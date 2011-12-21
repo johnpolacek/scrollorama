@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"> 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<title>scrollorama</title>
+	
+	<link href='http://fonts.googleapis.com/css?family=Bowlby+One+SC' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/normalize.css" type="text/css">
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	
+	<script src="js/jquery-1.7.1.min.js"></script>
+	<script src="js/jquery.lettering-0.6.1.min.js"></script>
+	<script src="js/waypoints.min.js"></script>
+	<script src="js/jquery.scrollTo-1.4.2-min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/jquery.scrolldeck.js"></script>
+	<script src="js/jquery.scrollorama.js"></script>
+</head>
+<body>
+	<a href="https://github.com/johnpolacek/scrollorama">
+		<img style="position: fixed; top: 0; right: 0; border: 0; z-index: 11;" src="https://a248.e.akamai.net/assets.github.com/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" alt="Fork me on GitHub" />
+	</a>
+
+	<div class="scrollblock">
+		<h1 id="title">scrollorama</h1>
+		<p id="author">created by <a href="http://twitter.com/johnpolacek">John Polacek</a></p>
+		<p id="desc">The jQuery plugin for doing cool scrolly stuff</p>
+	</div>
+
+	<div class="scrollblock" id="examples-transition">
+		<h2>Transitions</h2>
+		<h3 id="fade-in">Fade In</h3>
+		<h3 id="fly-in">Fly In</h3>
+		<h3 id="rotate-in">Rotate In</h3>
+		<h3 id="zoom-in">Zoom In</h3>
+		<p><small>( Any numeric CSS property )</small></p>
+	</div>
+	
+	<div class="scrollblock" id="examples-pin">
+		<h2>Pin Stuff</h2>
+		<h3 id="unpin">&#9733; Then unpin it &#9733;</h3>
+	</div>
+	
+	<div class="scrollblock" id="howtouse">
+		<h1>How To Use</h1>
+	</div>
+
+	<div class="scrollblock" id="credits">
+		<h1>Credits</h1>
+		<p>scrollorama by <a href="http://twitter.com/johnpolacek">John Polacek</a></p>
+		<p><a href="http://letteringjs.com">Lettering.js</a> by <a href="http://daverupert.com">Dave Rupert</a></p>
+		<p><a href="http://imakewebthings.github.com/jquery-waypoints/">jQuery Waypoints</a> by <a href="http://imakewebthings.com">Caleb Troughton</a></p>
+		<p><a href="http://demos.flesler.com/jquery/scrollTo/">jQuery ScrollTo</a> by <a href="https://twitter.com/#!/flesler">Ariel Flesler</a></p>
+		<p><a href="https://github.com/cameronmcefee/plax">jQuery Parallax Plugin</a> by <a href="http://www.cameronmcefee.com">Cameron McEfee</a></p>
+		<p><a href="http://johnpolacek.github.com/scrolldeck">scrolldeck.js</a> by <a href="http://twitter.com/johnpolacek">John Polacek</a></p>
+	</div>
+	
+	<script>
+		$(document).ready(function() {			
+			var scrollorama = $.scrollorama({ blocks:'.scrollblock' });
+			$('#title').lettering();
+			$('#title span')
+				.css('display','block')
+				.css('float','left');
+			$('.char9').css('padding-left','6px');
+			scrollorama.animate('#title',{ duration: 300, property:'zoom', end: 8 });
+			$('#title span').each(function() {
+				scrollorama.animate($(this),{ duration: 400, property:'top', end: Math.random()*120-180 });
+				scrollorama.animate($(this),{ duration: 300, property:'rotate', start:0, end:Math.random()*720-360 });
+			});
+			scrollorama.animate('#unpin',{ duration:500, property:'padding-top', start:400, pin:true });
+			scrollorama.animate('#fade-in',{ delay: 500, duration: 300, property:'opacity', start:0, baseline:'bottom' });
+			scrollorama.animate('#fly-in',{ delay: 500, duration: 300, property:'left', start:-1400, end:0, baseline:'bottom' });
+			scrollorama.animate('#rotate-in',{ duration: 800, property:'rotate', start:720, baseline:'bottom' });
+			scrollorama.animate('#zoom-in',{ duration: 800, property:'zoom', start:.01, baseline:'bottom' });
+		});
+	</script>
+
+</body></html>
