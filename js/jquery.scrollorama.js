@@ -26,14 +26,10 @@
 			scrollorama.settings = $.extend({}, defaults, options);
 			
 			// set browser prefix
-			if ($.browser.mozilla)
-					browserPrefix = '-moz-';
-			if ($.browser.webkit)
-				browserPrefix = '-webkit-';
-			if ($.browser.opera)
-				browserPrefix = '-o-';
-			if ($.browser.msie)
-				browserPrefix = '-ms-';
+			if ($.browser.mozilla)	browserPrefix = '-moz-';
+			if ($.browser.webkit)	browserPrefix = '-webkit-';
+			if ($.browser.opera)	browserPrefix = '-o-';
+			if ($.browser.msie)		browserPrefix = '-ms-';
 			
 			// create blocks array to contain animation props
 			$('body').css('position','relative');
@@ -80,7 +76,6 @@
 						// if above current block, settings should be at start value
 						if (i > currBlockIndex) {
 							if (currBlockIndex != i-1 && anim.baseline != 'bottom') {
-								console.log('prop '+anim.property);
 								setProperty(anim.element, anim.property, anim.startVal);
 							}
 							if (blocks[i].pin) {
@@ -110,16 +105,13 @@
 									.css('top', 0);
 							}
 							
+							// set start and end animation positions
 							var startAnimPos = blocks[i].top + anim.delay;
-							if (anim.baseline == 'bottom') {
-								startAnimPos -= $(window).height();
-							}
+							if (anim.baseline == 'bottom')  startAnimPos -= $(window).height();
 							var endAnimPos = startAnimPos + anim.duration;							
 							
 							// if scroll is before start of animation, set to start value
-							if (scrollTop < startAnimPos) {
-								setProperty(anim.element, anim.property, anim.startVal);
-							}
+							if (scrollTop < startAnimPos)  setProperty(anim.element, anim.property, anim.startVal);
 							
 							// if scroll is after end of animation, set to end value
 							else if (scrollTop > endAnimPos) {
@@ -149,17 +141,12 @@
 			var currBlockIndex = 0;
 			for (var i=0; i<blocks.length; i++) {
 				// check if block is in view
-				if (blocks[i].top < scrollTop) {
-					currBlockIndex = i;
-				}
+				if (blocks[i].top < scrollTop)  currBlockIndex = i;
 			}
 			return currBlockIndex;
 		}
 		
 		function setProperty(target, prop, val) {
-			if (prop == 'letter-spacing') {
-				console.log(val);
-			}
 			if (prop === 'rotate' || prop === 'zoom' || prop === 'scale') {
 				if (prop === 'rotate') {
 					target.css(browserPrefix+'transform', 'rotate('+val+'deg)');
@@ -193,9 +180,7 @@
 			*/
 			
 			// if string, convert to DOM object
-			if (typeof target === 'string') {
-				target = $(target);
-			}
+			if (typeof target === 'string')  target = $(target);
 			
 			// find block of target
 			var targetIndex;
@@ -212,37 +197,32 @@
 				
 				var anim = arguments[i];
 				
-				anim.delay = anim.delay !== undefined ? anim.delay : 0;
-			
+				// for top/left/right/bottom, set relative positioning if static
 				if (anim.property == 'top' || anim.property == 'left' || anim.property == 'bottom' || anim.property == 'right' ) {
-					
-					if (target.css('position') == 'static') {
-						target.css('position','relative');
-					}
-					
-					if (anim.start === undefined) {
-						anim.start = 0;
-					} else if (anim.end === undefined) {
-						anim.end = 0;
-					}
+					if (target.css('position') == 'static')	target.css('position','relative');
+					// set anim.start, anim.end defaults
+					if (anim.start === undefined) 			anim.start = 0;
+					else if (anim.end === undefined)		anim.end = 0;
 				}
 				
+				// set anim.start/anim.end defaults for rotate, zoom/scale, letter-spacing
 				if (anim.property == 'rotate') {
-					if (anim.start === undefined)
-						anim.start = 0;
-					if (anim.end === undefined)
-						anim.end = 0;
+					if (anim.start === undefined)	anim.start = 0;
+					if (anim.end === undefined)		anim.end = 0;
 				} else if (anim.property == 'zoom' || anim.property == 'scale' ) {
-					if (anim.start === undefined)
-						anim.start = 1;
-					if (anim.end === undefined)
-						anim.end = 1;
+					if (anim.start === undefined)	anim.start = 1;
+					if (anim.end === undefined)		anim.end = 1;
 				} else if (anim.property == 'letter-spacing' && target.css(anim.property)) {
-					if (anim.start === undefined)
-						anim.start = 1;
-					if (anim.end === undefined)
-						anim.end = 1;
+					if (anim.start === undefined)	anim.start = 1;
+					if (anim.end === undefined)		anim.end = 1;
 				}
+				
+				if (anim.baseline === undefined) {
+					if (anim.pin || targetBlock.pin || targetIndex == 0)  	anim.baseline = 'top';
+					else													anim.baseline = 'bottom';
+				}
+				
+				if (anim.delay === undefined)  anim.delay = 0;
 				
 				blocks[targetIndex].animations.push({
 					element: target,
@@ -251,7 +231,7 @@
 					property: anim.property,
 					startVal: anim.start !== undefined ? anim.start : parseInt(target.css(anim.property),10), 	// if undefined, use current css value
 					endVal: anim.end !== undefined ? anim.end : parseInt(target.css(anim.property),10),			// if undefined, use current css value
-					baseline: anim.baseline !== undefined ? anim.baseline : 'top'
+					baseline: anim.baseline !== undefined ? anim.baseline : 'bottom'
 				});
 				
 				if (anim.pin) {
@@ -263,6 +243,7 @@
 							blocks[j].top += offset;
 							blocks[j].block.css('top', blocks[j].top);
 						}
+						
 						// adjust height of scrollwrap
 						scrollwrap.height += offset;
 					}

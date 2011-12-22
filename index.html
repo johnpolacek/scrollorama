@@ -34,7 +34,7 @@
 	</div>
 	
 	<div class="scrollblock" id="examples-pin">
-		<h2>Pin Stuff</h2>
+		<h2>Pin It</h2>
 		<h3 id="unpin">&#9733; Then unpin it &#9733;</h3>
 	</div>
 	
@@ -46,13 +46,31 @@
 	
 	<div class="scrollblock" id="howtouse">
 		<h1>How To Use</h1>
+		<p id="disclaimer">Disclaimer: This is an experimental, just-for-fun sort of project and hasn&rsquo;t been thoroughly tested.</p>
+		<div id="instructions">
+			<p>Design and build your site, dividing your content into blocks.</p>
+			<p class="divider">&#9733; &#9733; &#9733;</p>
+			<p>Embed scrollorama.js after jQuery and initialize the plugin, passing the blocks class selector as a parameter.</p>
+			<p><blockquote><pre>
+$(document).ready(function() {
+    var scrollorama = $.scrollorama({
+        blocks:'.scrollblock'
+    });
+});</pre></blockquote></p>
+			<p class="divider">&#9733; &#9733; &#9733;</p>
+			<p>Use the plugin to target an element and animate its properties.</p>
+			<p><blockquote><pre>
+scrollorama.animate('#example1',{
+    duration:400, property:'opacity'
+})</pre></blockquote></p>
+		</div>
 	</div>
 
 	<div class="scrollblock" id="credits">
 		<h1>Credits</h1>
 		<p>scrollorama by <a href="http://twitter.com/johnpolacek">John Polacek</a></p>
 		<p><a href="http://letteringjs.com">Lettering.js</a> by <a href="http://daverupert.com">Dave Rupert</a></p>
-		<br />
+		<p class="divider">&#9733; &#9733; &#9733;</p>
 		<p><small>If you like scrollorama, give <a href="http://johnpolacek.github.com/scrolldeck">scrolldeck</a> a try</small></p>
 	</div>
 	
@@ -70,14 +88,14 @@
 				scrollorama.animate($(this),{ duration: 300, property:'rotate', start:0, end:Math.random()*720-360 });
 			});
 			scrollorama.animate('#unpin',{ duration:500, property:'padding-top', start:400, pin:true });
-			scrollorama.animate('#fade-in',{ delay: 500, duration: 300, property:'opacity', start:0, baseline:'bottom' });
-			scrollorama.animate('#fly-in',{ delay: 500, duration: 300, property:'left', start:-1400, end:0, baseline:'bottom' });
-			scrollorama.animate('#rotate-in',{ duration: 800, property:'rotate', start:720, baseline:'bottom' });
-			scrollorama.animate('#zoom-in',{ duration: 800, property:'zoom', start:.01, baseline:'bottom' });
-			scrollorama.animate('#any',{ delay: 500, duration: 300, property:'opacity', start:0, baseline:'bottom' });
-			scrollorama.animate('#any',{ delay: 600, duration: 400, property:'letter-spacing', start:18, baseline:'bottom' });
-			scrollorama.animate('#parallax2',{ delay: 400, duration: 600, property:'top', start:800, end:-800, baseline:'bottom' });
-			scrollorama.animate('#parallax3',{ delay: 200, duration: 1200, property:'top', start:500, end:-500, baseline:'bottom' });
+			scrollorama.animate('#fade-in',{ delay: 400, duration: 300, property:'opacity', start:0 });
+			scrollorama.animate('#fly-in',{ delay: 400, duration: 300, property:'left', start:-1400, end:0 });
+			scrollorama.animate('#rotate-in',{ duration: 800, property:'rotate', start:720 });
+			scrollorama.animate('#zoom-in',{ delay: 200, duration: 600, property:'zoom', start:8 });
+			scrollorama.animate('#any',{ delay: 700, duration: 200, property:'opacity', start:0 });
+			scrollorama.animate('#any',{ delay: 800, duration: 200, property:'letter-spacing', start:18 });
+			scrollorama.animate('#parallax2',{ delay: 400, duration: 600, property:'top', start:800, end:-800 });
+			scrollorama.animate('#parallax3',{ delay: 200, duration: 1200, property:'top', start:500, end:-500 });
 		});
 	</script>
 
