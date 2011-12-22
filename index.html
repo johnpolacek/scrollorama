@@ -11,10 +11,6 @@
 	
 	<script src="js/jquery-1.7.1.min.js"></script>
 	<script src="js/jquery.lettering-0.6.1.min.js"></script>
-	<script src="js/waypoints.min.js"></script>
-	<script src="js/jquery.scrollTo-1.4.2-min.js"></script>
-	<script src="js/jquery.easing.1.3.js"></script>
-	<script src="js/jquery.scrolldeck.js"></script>
 	<script src="js/jquery.scrollorama.js"></script>
 </head>
 <body>
@@ -22,7 +18,7 @@
 		<img style="position: fixed; top: 0; right: 0; border: 0; z-index: 11;" src="https://a248.e.akamai.net/assets.github.com/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" alt="Fork me on GitHub" />
 	</a>
 
-	<div class="scrollblock">
+	<div class="scrollblock" id="intro">
 		<h1 id="title">scrollorama</h1>
 		<p id="author">created by <a href="http://twitter.com/johnpolacek">John Polacek</a></p>
 		<p id="desc">The jQuery plugin for doing cool scrolly stuff</p>
@@ -34,12 +30,18 @@
 		<h3 id="fly-in">Fly In</h3>
 		<h3 id="rotate-in">Rotate In</h3>
 		<h3 id="zoom-in">Zoom In</h3>
-		<p><small>( Any numeric CSS property )</small></p>
+		<p id="any"><small>( Any numeric CSS property )</small></p>
 	</div>
 	
 	<div class="scrollblock" id="examples-pin">
 		<h2>Pin Stuff</h2>
 		<h3 id="unpin">&#9733; Then unpin it &#9733;</h3>
+	</div>
+	
+	<div class="scrollblock" id="examples-parallax">
+		<h2 id="parallax1">Parallax</h2>
+		<h3 id="parallax2">Parallax</h3>
+		<h3 id="parallax3">Parallax</h3>
 	</div>
 	
 	<div class="scrollblock" id="howtouse">
@@ -50,10 +52,8 @@
 		<h1>Credits</h1>
 		<p>scrollorama by <a href="http://twitter.com/johnpolacek">John Polacek</a></p>
 		<p><a href="http://letteringjs.com">Lettering.js</a> by <a href="http://daverupert.com">Dave Rupert</a></p>
-		<p><a href="http://imakewebthings.github.com/jquery-waypoints/">jQuery Waypoints</a> by <a href="http://imakewebthings.com">Caleb Troughton</a></p>
-		<p><a href="http://demos.flesler.com/jquery/scrollTo/">jQuery ScrollTo</a> by <a href="https://twitter.com/#!/flesler">Ariel Flesler</a></p>
-		<p><a href="https://github.com/cameronmcefee/plax">jQuery Parallax Plugin</a> by <a href="http://www.cameronmcefee.com">Cameron McEfee</a></p>
-		<p><a href="http://johnpolacek.github.com/scrolldeck">scrolldeck.js</a> by <a href="http://twitter.com/johnpolacek">John Polacek</a></p>
+		<br />
+		<p><small>If you like scrollorama, give <a href="http://johnpolacek.github.com/scrolldeck">scrolldeck</a> a try</small></p>
 	</div>
 	
 	<script>
@@ -74,6 +74,10 @@
 			scrollorama.animate('#fly-in',{ delay: 500, duration: 300, property:'left', start:-1400, end:0, baseline:'bottom' });
 			scrollorama.animate('#rotate-in',{ duration: 800, property:'rotate', start:720, baseline:'bottom' });
 			scrollorama.animate('#zoom-in',{ duration: 800, property:'zoom', start:.01, baseline:'bottom' });
+			scrollorama.animate('#any',{ delay: 500, duration: 300, property:'opacity', start:0, baseline:'bottom' });
+			scrollorama.animate('#any',{ delay: 600, duration: 400, property:'letter-spacing', start:18, baseline:'bottom' });
+			scrollorama.animate('#parallax2',{ delay: 400, duration: 600, property:'top', start:800, end:-800, baseline:'bottom' });
+			scrollorama.animate('#parallax3',{ delay: 200, duration: 1200, property:'top', start:500, end:-500, baseline:'bottom' });
 		});
 	</script>
 

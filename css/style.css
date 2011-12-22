@@ -72,18 +72,21 @@ code {
 	padding-left: 5px;
 }
 
-/*----------------------------------------  SLIDES  */
+/*----------------------------------------  BLOCKS */
 
 .scrollblock {
 	position: relative;
 	margin: 0;
 	width: 100%;
 	height: 800px;
-	overflow: hidden;
 }
 
 .scrollblock h2 {
-	padding-top: 150px;
+	padding-top: 100px;
+}
+
+#intro {
+	overflow: hidden;
 }
 
 #title {
@@ -108,4 +111,24 @@ code {
 	position: absolute;
 	top: 250px;
 	width: 100%;
+}
+
+#parallax2 {
+	position: absolute;
+	top: 200px;
+	left: -40px;
+	color: #C5C3DE;
+	opacity: .2;
+	font-size: 200px;
+	text-shadow: none;
+}
+
+#parallax3 {
+	position: absolute;
+	top: 320px;
+	right: 30px;
+	color: #C5C3DE;
+	opacity: .4;
+	font-size: 180px;
+	text-shadow: none;
 }

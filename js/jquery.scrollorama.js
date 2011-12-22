@@ -80,6 +80,7 @@
 						// if above current block, settings should be at start value
 						if (i > currBlockIndex) {
 							if (currBlockIndex != i-1 && anim.baseline != 'bottom') {
+								console.log('prop '+anim.property);
 								setProperty(anim.element, anim.property, anim.startVal);
 							}
 							if (blocks[i].pin) {
@@ -156,6 +157,9 @@
 		}
 		
 		function setProperty(target, prop, val) {
+			if (prop == 'letter-spacing') {
+				console.log(val);
+			}
 			if (prop === 'rotate' || prop === 'zoom' || prop === 'scale') {
 				if (prop === 'rotate') {
 					target.css(browserPrefix+'transform', 'rotate('+val+'deg)');
@@ -166,7 +170,6 @@
 					} else {
 						target.css('zoom', scaleCSS);
 					}
-					console.log(browserPrefix+'transform: ', scaleCSS);
 				}
 			} else {
 				target.css(prop, val);
@@ -230,6 +233,11 @@
 					if (anim.end === undefined)
 						anim.end = 0;
 				} else if (anim.property == 'zoom' || anim.property == 'scale' ) {
+					if (anim.start === undefined)
+						anim.start = 1;
+					if (anim.end === undefined)
+						anim.end = 1;
+				} else if (anim.property == 'letter-spacing' && target.css(anim.property)) {
 					if (anim.start === undefined)
 						anim.start = 1;
 					if (anim.end === undefined)
