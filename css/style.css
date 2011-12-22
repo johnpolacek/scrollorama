@@ -52,7 +52,7 @@ ul {
 }
 
 .download {
-	padding-left: 15px;
+	padding: 10px;
 }
 
 pre {
@@ -88,8 +88,11 @@ code {
 
 .divider {
 	font-size: 14px;
-	text-shadow: none;
+}
+
+.divider, .accent {
 	color: #69697A;
+	text-shadow: none;
 }
 
 #intro {
@@ -120,27 +123,43 @@ code {
 	width: 100%;
 }
 
+#download {
+	position: absolute;
+	top: 320px;
+	font-size: 18px;
+	width: 100%;
+	line-height: 1.8;
+}
+
+#download a {
+	color: #69697A;
+}
+
 #examples-pin {
 	height: 500px;
+}
+
+#examples-parallax {
+	overflow: hidden;
 }
 
 #parallax2 {
 	position: absolute;
 	top: 200px;
-	left: -40px;
+	left: -50px;
 	color: #C5C3DE;
 	opacity: .2;
-	font-size: 200px;
+	font-size: 210px;
 	text-shadow: none;
 }
 
 #parallax3 {
 	position: absolute;
 	top: 320px;
-	right: 30px;
+	right: 40px;
 	color: #C5C3DE;
 	opacity: .4;
-	font-size: 180px;
+	font-size: 160px;
 	text-shadow: none;
 }
 
