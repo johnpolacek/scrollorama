@@ -15,8 +15,13 @@
 			onBlockChange = function() {};
 		
 		var scrollorama = this;
-		scrollorama.settings = options;
+		
+		var defaults = {offset:0};
+		
+		scrollorama.settings = $.extend({}, defaults, options);
 		scrollorama.blockIndex = 0;
+		
+		if (options.blocks === undefined) alert('ERROR: Must assign blocks class selector to scrollorama plugin');
 		
 		// PRIVATE FUNCTIONS
 		function init() {
@@ -138,7 +143,7 @@
 			var currBlockIndex = 0;
 			for (var i=0; i<blocks.length; i++) {
 				// check if block is in view
-				if (blocks[i].top < scrollTop)  currBlockIndex = i;
+				if (blocks[i].top <= scrollTop - scrollorama.settings.offset)  currBlockIndex = i;
 			}
 			return currBlockIndex;
 		}
