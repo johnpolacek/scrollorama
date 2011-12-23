@@ -11,19 +11,16 @@
 		// PRIVATE VARS
 		var blocks = [],
 			scrollElements = [],
-			scrollwrap,
-			browserPrefix = '';
-		
-		var defaults = {
-			
-		};
+			browserPrefix = '',
+			onBlockChange = function() {};
 		
 		var scrollorama = this;
-		scrollorama.settings = {};
+		scrollorama.settings = options;
+		scrollorama.blockIndex = 0;
 		
 		// PRIVATE FUNCTIONS
 		function init() {
-			scrollorama.settings = $.extend({}, defaults, options);
+			if (typeof scrollorama.settings.blocks === 'string')  scrollorama.settings.blocks = $(scrollorama.settings.blocks);
 			
 			// set browser prefix
 			if ($.browser.mozilla)	browserPrefix = '-moz-';
@@ -34,8 +31,8 @@
 			// create blocks array to contain animation props
 			$('body').css('position','relative');
 			
-			for (var i=0; i<$(scrollorama.settings.blocks).length; i++) {
-				var block = $(scrollorama.settings.blocks).eq(i);
+			for (var i=0; i<scrollorama.settings.blocks.length; i++) {
+				var block = scrollorama.settings.blocks.eq(i);
 				blocks.push({
 					block: block,
 					top: block.offset().top,
@@ -52,12 +49,6 @@
 			}
 			
 			$("body").prepend("<div id='scroll-wrap'></div>");
-			scrollwrap = $('#scroll-wrap');
-			scrollwrap
-				.css('height', $('body').height())
-				.css('position', 'absolute')
-				.css('border', 'solid 1px red');
-				
 			$(window).scroll(onScrollorama);
 		};
 		
@@ -134,6 +125,12 @@
 						}
 					}
 				}
+			}
+			
+			// update blockIndex and trigger event if changed
+			if (scrollorama.blockIndex != currBlockIndex) {
+				scrollorama.blockIndex = currBlockIndex;
+				onBlockChange()
 			}
 		}
 		
@@ -243,14 +240,16 @@
 							blocks[j].top += offset;
 							blocks[j].block.css('top', blocks[j].top);
 						}
-						
-						// adjust height of scrollwrap
-						scrollwrap.height += offset;
 					}
 				}
 			}
 			
 			onScrollorama();
+		}
+		
+		// function for passing blockChange event callback
+		scrollorama.onBlockChange = function(f) {
+			onBlockChange = f;
 		}
 		
 		

@@ -17,6 +17,8 @@
 	<a href="https://github.com/johnpolacek/scrollorama">
 		<img style="position: fixed; top: 0; right: 0; border: 0; z-index: 11;" src="https://a248.e.akamai.net/assets.github.com/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" alt="Fork me on GitHub" />
 	</a>
+	
+	<p id="console"></p>
 
 	<div class="scrollblock" id="intro">
 		<h1 id="title">scrollorama</h1>
@@ -80,18 +82,34 @@ scrollorama.animate('#example1',{
 	</div>
 	
 	<script>
-		$(document).ready(function() {			
+		$(document).ready(function() {
+			
+			// initialize the plugin, pass in the class selector for the sections of content (blocks)
 			var scrollorama = $.scrollorama({ blocks:'.scrollblock' });
+			
+			// assign function to add behavior for onBlockChange event
+			scrollorama.onBlockChange(function() {
+				var i = scrollorama.blockIndex;
+				$('#console')
+					.css('display','block')
+					.text('onBlockChange | blockIndex:'+i+' | current block: '+scrollorama.settings.blocks.eq(i).attr('id'));
+			});
+			
+			// lettering.js for coolness
 			$('#title').lettering();
 			$('#title span')
 				.css('display','block')
 				.css('float','left');
 			$('.char9').css('padding-left','6px');
+			
+			// animate the title letters to explode
 			scrollorama.animate('#title',{ duration: 300, property:'zoom', end: 8 });
 			$('#title span').each(function() {
 				scrollorama.animate($(this),{ duration: 400, property:'top', end: Math.random()*120-180 });
 				scrollorama.animate($(this),{ duration: 300, property:'rotate', start:0, end:Math.random()*720-360 });
 			});
+			
+			// animate some examples
 			scrollorama.animate('#unpin',{ duration:500, property:'padding-top', start:400, pin:true });
 			scrollorama.animate('#fade-in',{ delay: 400, duration: 300, property:'opacity', start:0 });
 			scrollorama.animate('#fly-in',{ delay: 400, duration: 300, property:'left', start:-1400, end:0 });
@@ -99,6 +117,8 @@ scrollorama.animate('#example1',{
 			scrollorama.animate('#zoom-in',{ delay: 200, duration: 600, property:'zoom', start:8 });
 			scrollorama.animate('#any',{ delay: 700, duration: 200, property:'opacity', start:0 });
 			scrollorama.animate('#any',{ delay: 800, duration: 200, property:'letter-spacing', start:18 });
+			
+			// animate the parallaxing
 			scrollorama.animate('#parallax2',{ delay: 400, duration: 600, property:'top', start:800, end:-800 });
 			scrollorama.animate('#parallax3',{ delay: 200, duration: 1200, property:'top', start:500, end:-500 });
 		});

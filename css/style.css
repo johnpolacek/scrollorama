@@ -96,12 +96,21 @@ code {
 }
 
 #console {
+	display: none;
 	position: fixed;
 	top: 0;
-	left: 10px;
+	left: 15px;
+	width: 500px;
+	margin: 0;
 	font-size: 14px;
-	width: 100px;
-	height: 20px;
+	font-style: italic;
+	background-color: #69697A;
+	text-shadow: none;
+	text-align: left;
+	padding: 3px 10px;
+	border-radius: 0 0 10px 10px;
+	z-index: 99;
+	opacity: .8;
 }
 
 #intro {
