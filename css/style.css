@@ -95,6 +95,15 @@ code {
 	text-shadow: none;
 }
 
+#console {
+	position: fixed;
+	top: 0;
+	left: 10px;
+	font-size: 14px;
+	width: 100px;
+	height: 20px;
+}
+
 #intro {
 	overflow: hidden;
 }
@@ -137,6 +146,10 @@ code {
 
 #examples-pin {
 	height: 500px;
+}
+
+#examples-transition {
+	overflow: hidden;
 }
 
 #examples-parallax {
