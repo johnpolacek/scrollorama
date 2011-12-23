@@ -196,7 +196,9 @@
 				
 				// for top/left/right/bottom, set relative positioning if static
 				if (anim.property == 'top' || anim.property == 'left' || anim.property == 'bottom' || anim.property == 'right' ) {
+					
 					if (target.css('position') == 'static')	target.css('position','relative');
+					
 					// set anim.start, anim.end defaults
 					if (anim.start === undefined) 			anim.start = 0;
 					else if (anim.end === undefined)		anim.end = 0;
@@ -235,6 +237,7 @@
 					if (targetBlock.pin < anim.duration + anim.delay) {
 						var offset = anim.duration + anim.delay - targetBlock.pin;
 						targetBlock.pin += offset;
+						
 						// adjust positions of blocks below target block
 						for (var j=targetIndex+1; j<blocks.length; j++) {
 							blocks[j].top += offset;
