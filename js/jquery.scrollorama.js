@@ -10,7 +10,6 @@
 		
 		// PRIVATE VARS
 		var blocks = [],
-			scrollElements = [],
 			browserPrefix = '',
 			onBlockChange = function() {};
 		
@@ -228,7 +227,7 @@
 				
 				if (anim.delay === undefined)  anim.delay = 0;
 				
-				blocks[targetIndex].animations.push({
+				targetBlock.animations.push({
 					element: target,
 					delay: anim.delay,
 					duration: anim.duration,
@@ -249,6 +248,8 @@
 							blocks[j].block.css('top', blocks[j].top);
 						}
 					}
+					console.log(targetBlock.top);
+					console.log(targetBlock.pin);
 				}
 			}
 			
@@ -258,6 +259,25 @@
 		// function for passing blockChange event callback
 		scrollorama.onBlockChange = function(f) {
 			onBlockChange = f;
+		}
+		
+		// function for getting an array of scrollpoints
+		// (top of each animation block and animation element scroll start point)
+		scrollorama.getScrollpoints = function() {
+			var scrollpoints = [];
+			for (var i=0; i<blocks.length; i++) {
+				scrollpoints.push(blocks[i].top);
+				// go through the animations for each block
+				if (blocks[i].animations.length && blocks[i].pin > 0) {
+					for (var j=0; j<blocks[i].animations.length; j++) {
+						var anim = blocks[i].animations[j];
+						scrollpoints.push(blocks[i].top + anim.delay + anim.duration);
+					}
+				}
+			}
+			// make sure scrollpoints are in numeric order
+			scrollpoints.sort(function(a,b){return a - b});
+			return scrollpoints;
 		}
 		
 		
