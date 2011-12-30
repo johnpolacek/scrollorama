@@ -8,6 +8,7 @@ body {
 
 h1 {
 	font-size: 120px;
+	font-weight: normal;
 	margin: 0;
 	font-family: 'Bowlby One SC',"Arial Black",Gadget,sans-serif;
 	text-transform: uppercase;
@@ -18,6 +19,7 @@ h1 {
 
 h2 {
 	font-size: 80px;
+	font-weight: normal;
 	margin: 0;
 	text-shadow: 0 2px 1px #000;
 	color: #FFB000;
@@ -27,6 +29,7 @@ h2 {
 
 h3 {
 	font-size: 40px;
+	font-weight: normal;
 	margin: 0;
 	color: #D92B00;
 	text-shadow: 0 2px 1px #000;
@@ -61,7 +64,7 @@ pre {
 
 blockquote {
 	text-align: left;
-	width: 50%;
+	width: 720px;
 	margin: 10px auto;
 	background: #C5C3DE;
 	border: solid 2px #69697A;
@@ -186,7 +189,7 @@ code {
 }
 
 #howtouse {
-	height: 1000px;
+	height: 1100px;
 }
 
 #disclaimer {

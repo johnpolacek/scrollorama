@@ -65,11 +65,17 @@ $(document).ready(function() {
     });
 });</pre></blockquote></p>
 			<p class="divider">&#9733; &#9733; &#9733;</p>
-			<p>Use the plugin to target an element and animate its properties.</p>
+			<p>Target an element and animate its properties.</p>
 			<p><blockquote><pre>
 scrollorama.animate('#example1',{
     duration:400, property:'opacity'
 })</pre></blockquote></p>
+			<p class="divider">&#9733; &#9733; &#9733;</p>
+			<p>Hook into the <code>onBlockChange</code> event.</p>
+			<p><blockquote><pre>
+scrollorama.onBlockChange(function() {
+    alert('You just scrolled to block#'+scrollorama.blockIndex);
+});</pre></blockquote></p>
 		</div>
 	</div>
 

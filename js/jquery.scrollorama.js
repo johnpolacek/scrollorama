@@ -248,8 +248,6 @@
 							blocks[j].block.css('top', blocks[j].top);
 						}
 					}
-					console.log(targetBlock.top);
-					console.log(targetBlock.pin);
 				}
 			}
 			
