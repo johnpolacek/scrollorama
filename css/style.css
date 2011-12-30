@@ -128,14 +128,20 @@ code {
 }
 
 #author {
-	width: 410px;
+	width: 640px;
 	position: absolute;
-	top: 200px;
-	left: 50%;
+	top: 180px;
+	left: 53%;
 	font-size: 20px;
 	text-align: right;
 	font-style: italic;
 	color: #D92B00;
+}
+
+.twitter-follow-button {
+	position: relative;
+	top: 8px;
+	left: 4px;
 }
 
 #desc {
