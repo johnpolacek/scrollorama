@@ -35,7 +35,8 @@
 			// create blocks array to contain animation props
 			$('body').css('position','relative');
 			
-			for (var i=0; i<scrollorama.settings.blocks.length; i++) {
+			var i;
+			for (i=0; i<scrollorama.settings.blocks.length; i++) {
 				var block = scrollorama.settings.blocks.eq(i);
 				blocks.push({
 					block: block,
@@ -46,7 +47,7 @@
 			}
 			
 			// convert block elements to absolute position
-			for (var i=0; i<blocks.length; i++) {
+			for (i=0; i<blocks.length; i++) {
 				blocks[i].block
 					.css('position', 'absolute')
 					.css('top', blocks[i].top);
@@ -64,9 +65,7 @@
 					didScroll = false;
 				}				
 			}, 50);
-			
-			
-		};
+		}
 		
 		function onScrollorama() {
 			var scrollTop = $(window).scrollTop();
@@ -146,7 +145,7 @@
 			// update blockIndex and trigger event if changed
 			if (scrollorama.blockIndex != currBlockIndex) {
 				scrollorama.blockIndex = currBlockIndex;
-				onBlockChange()
+				onBlockChange();
 			}
 		}
 		
@@ -183,8 +182,8 @@
 				arguments	= array of animation parameters
 				
 				animation parameters:
-				delay 		= amount of scrolling (in pixels) before animation starts
-				duration 	= amount of scrolling (in pixels) over which the animation occurs
+				delay		= amount of scrolling (in pixels) before animation starts
+				duration	= amount of scrolling (in pixels) over which the animation occurs
 				property	= css property being animated
 				start		= start value of the property
 				end			= end value of the property
@@ -216,7 +215,7 @@
 					if (target.css('position') == 'static')	target.css('position','relative');
 					
 					// set anim.start, anim.end defaults
-					if (anim.start === undefined) 			anim.start = 0;
+					if (anim.start === undefined)			anim.start = 0;
 					else if (anim.end === undefined)		anim.end = 0;
 				}
 				
@@ -233,7 +232,7 @@
 				}
 				
 				if (anim.baseline === undefined) {
-					if (anim.pin || targetBlock.pin || targetIndex == 0)  	anim.baseline = 'top';
+					if (anim.pin || targetBlock.pin || targetIndex === 0)	anim.baseline = 'top';
 					else													anim.baseline = 'bottom';
 				}
 				
@@ -244,7 +243,7 @@
 					delay: anim.delay,
 					duration: anim.duration,
 					property: anim.property,
-					startVal: anim.start !== undefined ? anim.start : parseInt(target.css(anim.property),10), 	// if undefined, use current css value
+					startVal: anim.start !== undefined ? anim.start : parseInt(target.css(anim.property),10),	// if undefined, use current css value
 					endVal: anim.end !== undefined ? anim.end : parseInt(target.css(anim.property),10),			// if undefined, use current css value
 					baseline: anim.baseline !== undefined ? anim.baseline : 'bottom'
 				});
@@ -264,12 +263,12 @@
 			}
 			
 			onScrollorama();
-		}
+		};
 		
 		// function for passing blockChange event callback
 		scrollorama.onBlockChange = function(f) {
 			onBlockChange = f;
-		}
+		};
 		
 		// function for getting an array of scrollpoints
 		// (top of each animation block and animation element scroll start point)
@@ -286,9 +285,9 @@
 				}
 			}
 			// make sure scrollpoints are in numeric order
-			scrollpoints.sort(function(a,b){return a - b});
+			scrollpoints.sort(function(a,b){return a - b;});
 			return scrollpoints;
-		}
+		};
 		
 		
 		// INIT
