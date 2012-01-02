@@ -205,7 +205,7 @@
 				}
 			}
 			
-			// add each animation to the block�s animations array
+			// add each animation to the blocks animations array
 			for (i=1; i<arguments.length; i++) {
 				
 				var anim = arguments[i];
