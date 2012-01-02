@@ -53,7 +53,19 @@
 			}
 			
 			$("body").prepend("<div id='scroll-wrap'></div>");
-			$(window).scroll(onScrollorama);
+			
+			var didScroll = false;
+			$(window).scroll(function(){
+				didScroll = true; 
+			});
+			setInterval(function(){ 
+				if(didScroll){
+					onScrollorama();
+					didScroll = false;
+				}				
+			}, 50);
+			
+			
 		};
 		
 		function onScrollorama() {
@@ -193,7 +205,7 @@
 				}
 			}
 			
-			// add each animation to the blockÕs animations array
+			// add each animation to the blockï¿½s animations array
 			for (i=1; i<arguments.length; i++) {
 				
 				var anim = arguments[i];
