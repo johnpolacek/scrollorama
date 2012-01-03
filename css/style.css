@@ -206,7 +206,7 @@ code {
 }
 
 #howtouse {
-	height: 1100px;
+	height: 1700px;
 }
 
 #disclaimer {
@@ -222,4 +222,27 @@ code {
 
 #instructions p {
 	margin: 0px auto 20px;
+}
+
+.param-list {
+	color: #C5C3DE;
+	font-size: 18px;
+	line-height: 1.4;
+	padding: 0 18px;
+}
+
+.param-list li {
+	padding-bottom: 20px;
+	text-shadow: 0 2px 1px #000;
+}
+
+.param {
+	display: block;
+	color: #69697A;
+}
+
+.param-def small {
+	display: block;
+	font-weight: normal;
+	font-style: italic;
 }

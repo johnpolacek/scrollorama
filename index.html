@@ -74,6 +74,34 @@ $(document).ready(function() {
 scrollorama.animate('#example1',{
     duration:400, property:'opacity'
 })</pre></blockquote></p>
+			<p>The animation properties you can use are:</p>
+			<ul class="param-list">
+				<li>
+					<span class="param">duration</span>
+					<span class="param-def">number of pixels of scrolling the animation lasts</span>
+				</li>
+				<li>
+					<span class="param">delay</span>
+					<span class="param-def">number of pixels of scrolling before the animation starts<small>(animation is set to begin when the top of the scroll block is at the bottom of browser window)</small></span>
+				</li>
+				<li>
+					<span class="param">property</span>
+					<span class="param-def">css property being animated <small>(must be numeric)</small></span>
+				</li>
+				<li>
+					<span class="param">start</span>
+					<span class="param-def">value of the css property at the start of the animation <small>(if unassigned, will be the element&rsquo;s current property value)</small></span>
+				</li>
+				<li>
+					<span class="param">end</span>
+					<span class="param-def">value of the css property at the end of the animation <small>(if unassigned, will be the element&rsquo;s current property value)</small></span>
+				</li>
+				<li>
+					<span class="param">pin</span>
+					<span class="param-def">set to true if you want the scroll block to be pinned during its animations <small>(note: block will be pinned for all its element&rsquo;s animations)</small></span>
+				</li>
+				
+			</ul>
 			<p class="divider">&#9733; &#9733; &#9733;</p>
 			<p>Hook into the <code>onBlockChange</code> event.</p>
 			<p><blockquote><pre>
