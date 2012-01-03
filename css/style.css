@@ -206,7 +206,7 @@ code {
 }
 
 #howtouse {
-	height: 1700px;
+	height: 1800px;
 }
 
 #disclaimer {
@@ -222,6 +222,10 @@ code {
 
 #instructions p {
 	margin: 0px auto 20px;
+}
+
+#instructions-animation {
+	padding-top: 40px;
 }
 
 .param-list {
@@ -245,4 +249,8 @@ code {
 	display: block;
 	font-weight: normal;
 	font-style: italic;
+}
+
+#credits {
+	height: 525px;
 }
