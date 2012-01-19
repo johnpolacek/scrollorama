@@ -40,7 +40,7 @@
 				var block = scrollorama.settings.blocks.eq(i);
 				blocks.push({
 					block: block,
-					top: block.offset().top,
+					top: block.offset().top - parseInt(block.css('margin-top'), 10),
 					pin: 0,
 					animations:[]
 				});
