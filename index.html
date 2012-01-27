@@ -143,6 +143,7 @@ scrollorama.onBlockChange(function() {
 			
 			// animate the title letters to explode
 			scrollorama.animate('#title',{ duration: 300, property:'zoom', end: 8 });
+			scrollorama.animate('#author',{ duration: 10, property:'z-index', end: 0 });
 			$('#title span').each(function() {
 				scrollorama.animate($(this),{ duration: 400, property:'top', end: Math.random()*120-180 });
 				scrollorama.animate($(this),{ duration: 300, property:'rotate', start:0, end:Math.random()*720-360 });

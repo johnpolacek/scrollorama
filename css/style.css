@@ -147,6 +147,7 @@ code {
 	text-align: right;
 	font-style: italic;
 	color: #D92B00;
+	z-index:100;
 }
 
 .twitter-follow-button {
