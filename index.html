@@ -57,6 +57,7 @@
 	
 	<div class="scrollblock" id="examples-easing">
 		<h2 id="easing">Easing</h2>
+		<div id="easing_bottom"></div>
 	</div>
 	
 	<div class="scrollblock" id="howtouse">
@@ -107,7 +108,7 @@ scrollorama.animate('#example1',{
 				<li>
 					<span class="param">easing</span>
 					<span class="param-def">'bounce baby, bounce.' use the same easing equations you're used to.
-						<small>(if unassigned, will be linear)</span>
+						<small>(if unassigned, will be a linear transition)</span>
 				</li>
 				
 			</ul>
@@ -174,18 +175,16 @@ scrollorama.onBlockChange(function() {
 			// animate some easing examples
 			var $easing = $('#easing'),
 				$clone = $easing.clone().appendTo('#examples-easing')
-								.css({position:'relative',top:'-2.78em'});
+								.css({position:'relative',top:'-2.95em'})
+								.lettering();
 			$easing.css({ color: '#131420', textShadow: '0 1px 0 #363959' });
-			$clone.lettering();
 			easing_array = [	'easeOutBounce',
 								'easeOutQuad',
 								'easeOutCubic',
 								'easeOutQuart',
 								'easeOutQuint', 
-								'easeOutExpo', 
-							];
+								'easeOutExpo' 		];
 			$clone.find('span')
-				.css({	position: 'relative', top: 0, left: 0, color:'#' })
 				.each( function( idx, el ){
 					scrollorama.animate( $(this), {	delay:400, duration: 500, 
 													property:'top', end: 300,

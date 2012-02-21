@@ -134,11 +134,6 @@
 								// calculate percent to animate
 								var animPercent = (scrollTop - startAnimPos) / anim.duration;
 								// account for easing if there is any
-								/*console.log(
-										anim.easing,
-										$.easing[anim.easing],
-										jQuery.isFunction( $.easing[anim.easing] )
-									);*/
 								if ( anim.easing && $.isFunction( $.easing[anim.easing] ) ){
 									animPercent = $.easing[anim.easing](	animPercent, animPercent*1000, 0, 1, 1000 );
 								}

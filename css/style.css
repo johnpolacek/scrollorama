@@ -206,6 +206,27 @@ code {
 	text-shadow: none;
 }
 
+#easing span {
+	position: relative;
+	top:0;
+	left:0;
+}
+#easing_bottom {
+	width: 330px;
+	height: 13px;
+	margin: auto;
+	background: #131420;
+	border-bottom: 1px solid #30334F;
+	position: relative;
+	top: 276px;
+	border-radius: 2px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-ms-border-radius: 4px;
+	border-radius: 4px;
+}
+
 #howtouse {
 	height: 1800px;
 }
