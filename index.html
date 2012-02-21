@@ -55,6 +55,10 @@
 		<h3 id="parallax3">Parallax</h3>
 	</div>
 	
+	<div class="scrollblock" id="examples-easing">
+		<h2 id="easing">Easing</h2>
+	</div>
+	
 	<div class="scrollblock" id="howtouse">
 		<h1>How To Use</h1>
 		<p id="disclaimer">Disclaimer: This is an experimental, just-for-fun sort of project and hasn&rsquo;t been thoroughly tested.</p>
@@ -99,6 +103,11 @@ scrollorama.animate('#example1',{
 				<li>
 					<span class="param">pin</span>
 					<span class="param-def">set to true if you want the scroll block to be pinned during its animations <small>(note: block will be pinned for all its element&rsquo;s animations)</small></span>
+				</li>
+				<li>
+					<span class="param">easing</span>
+					<span class="param-def">'bounce baby, bounce.' use the same easing equations you're used to.
+						<small>(if unassigned, will be linear)</span>
 				</li>
 				
 			</ul>
@@ -161,6 +170,28 @@ scrollorama.onBlockChange(function() {
 			// animate the parallaxing
 			scrollorama.animate('#parallax2',{ delay: 400, duration: 600, property:'top', start:800, end:-800 });
 			scrollorama.animate('#parallax3',{ delay: 200, duration: 1200, property:'top', start:500, end:-500 });
+			
+			// animate some easing examples
+			var $easing = $('#easing'),
+				$clone = $easing.clone().appendTo('#examples-easing')
+								.css({position:'relative',top:'-2.78em'});
+			$easing.css({ color: '#131420', textShadow: '0 1px 0 #363959' });
+			$clone.lettering();
+			easing_array = [	'easeOutBounce',
+								'easeOutQuad',
+								'easeOutCubic',
+								'easeOutQuart',
+								'easeOutQuint', 
+								'easeOutExpo', 
+							];
+			$clone.find('span')
+				.css({	position: 'relative', top: 0, left: 0, color:'#' })
+				.each( function( idx, el ){
+					scrollorama.animate( $(this), {	delay:400, duration: 500, 
+													property:'top', end: 300,
+													easing: easing_array[idx] });
+				})
+			
 		});
 	</script>
 
