@@ -118,6 +118,17 @@ scrollorama.animate('#example1',{
 scrollorama.onBlockChange(function() {
     alert('You just scrolled to block#'+scrollorama.blockIndex);
 });</pre></blockquote></p>
+			
+			<p class="divider">&#9733; &#9733; &#9733;</p>
+			<p>Note: If you are not using the pinning feature, it is recommended you disable it.
+				<small>Pinning requires scroll blocks to be converted to absolute positioning, which can break some layouts.</small>
+			</p>
+			<p><blockquote><pre>
+$(document).ready(function() {
+    var scrollorama = $.scrollorama({
+        enablePin:false
+    });
+});</pre></blockquote></p>
 		</div>
 	</div>
 

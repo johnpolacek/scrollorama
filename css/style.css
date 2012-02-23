@@ -142,7 +142,7 @@ code {
 	width: 640px;
 	position: absolute;
 	top: 180px;
-	left: 53%;
+	right: 15%;
 	font-size: 20px;
 	text-align: right;
 	font-style: italic;
@@ -228,7 +228,7 @@ code {
 }
 
 #howtouse {
-	height: 1800px;
+	height: 2100px;
 }
 
 #disclaimer {

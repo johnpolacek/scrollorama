@@ -15,7 +15,7 @@
 		
 		var scrollorama = this;
 		
-		var defaults = {offset:0};
+		var defaults = {offset:0, enablePin:true};
 		
 		scrollorama.settings = $.extend({}, defaults, options);
 		scrollorama.blockIndex = 0;
@@ -47,13 +47,15 @@
 			}
 			
 			// convert block elements to absolute position
-			for (i=0; i<blocks.length; i++) {
-				blocks[i].block
-					.css('position', 'absolute')
-					.css('top', blocks[i].top);
+			if (scrollorama.settings.enablePin.toString() == 'true') {
+				for (i=0; i<blocks.length; i++) {
+					blocks[i].block
+						.css('position', 'absolute')
+						.css('top', blocks[i].top);
+				}
 			}
 			
-			$("body").prepend("<div id='scroll-wrap'></div>");
+			$('body').prepend('<div id="scroll-wrap"></div>');
 			
 			var didScroll = false;
 			$(window).scroll(function(){
@@ -302,8 +304,6 @@
 		return scrollorama;
     };
 
-
-
 	//
 	//		Easing functions COPIED DIRECTLY from jQuery UI
 	//
@@ -439,9 +439,5 @@
 			return $.easing.easeOutBounce (x, t*2-d, 0, c, d) * .5 + c*.5 + b;
 		}
 	});
-
-
-
-
      
 })(jQuery);
