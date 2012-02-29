@@ -40,7 +40,7 @@
 				var block = scrollorama.settings.blocks.eq(i);
 				blocks.push({
 					block: block,
-					top: block.offset().top,
+					top: block.offset().top - parseInt(block.css('margin-top'), 10),
 					pin: 0,
 					animations:[]
 				});
@@ -170,6 +170,12 @@
 						target.css('zoom', scaleCSS);
 					}
 				}
+			}
+			else if(prop === 'background-position' || prop === 'background-position-x' || prop === 'background-position-x' ){
+				target.css(prop,val+'px');
+			} 
+			else if(prop === 'text-shadow' ){
+				target.css(prop,'0px 0px '+val+'px #ffffff');
 			} else {
 				target.css(prop, val);
 			}	
