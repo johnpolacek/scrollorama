@@ -176,10 +176,23 @@
 						target.css('zoom', scaleCSS);
 					}
 				}
+			}
+			else if(prop === 'background-position-x' || prop === 'background-position-y' ){
+				var currentPosition = target.css('background-position').split(' ');
+				if(prop === 'background-position-x'){
+					target.css('background-position',val+'px '+currentPosition[1])
+				}
+				if(prop === 'background-position-y'){
+					target.css('background-position',currentPosition[0]+' '+val+'px')
+				}
+			} 
+			else if(prop === 'text-shadow' ){
+				target.css(prop,'0px 0px '+val+'px #ffffff');
 			} else {
 				target.css(prop, val);
 			}	
 		}
+		
 		
 		// PUBLIC FUNCTIONS
 		scrollorama.animate = function(target) {
