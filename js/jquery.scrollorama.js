@@ -66,7 +66,7 @@
 					onScrollorama();
 					didScroll = false;
 				}				
-			}, 50);
+			}, 100);
 		}
 		
 		function onScrollorama() {
