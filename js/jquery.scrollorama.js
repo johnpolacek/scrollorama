@@ -7,7 +7,11 @@
 
 (function($) {
     $.scrollorama = function(options) {
-		var scrollorama = this, blocks = [], browserPrefix = '', onBlockChange = function() {}, defaults = {offset:0, enablePin: true};
+		var scrollorama = this,
+			blocks = [],
+			browserPrefix = '',
+			onBlockChange = function() {},
+			defaults = {offset:0, enablePin: true};
 		
 		scrollorama.settings = $.extend({}, defaults, options);
 		scrollorama.blockIndex = 0;
@@ -16,7 +20,7 @@
 		
 		// PRIVATE FUNCTIONS
 		function init() {
-		    var i, block, didScroll = false;
+			var i, block, didScroll = false;
 			if (typeof scrollorama.settings.blocks === 'string') { scrollorama.settings.blocks = $(scrollorama.settings.blocks); }
 			
 			// set browser prefix
@@ -48,13 +52,13 @@
 			
 			$('body').prepend('<div id="scroll-wrap"></div>');
 			$(window).scroll(function() {
-				didScroll = true; 
+				didScroll = true;
 			});
-			setInterval(function() { 
+			setInterval(function() {
 				if(didScroll) {
 					onScrollorama();
 					didScroll = false;
-				}				
+				}
 			}, 100);
 		}
 		
@@ -78,8 +82,8 @@
 							}
 							if (blocks[i].pin) {
 								blocks[i].block
-								    .css('position', 'absolute')
-								    .css('top', blocks[i].top);
+								.css('position', 'absolute')
+								.css('top', blocks[i].top);
 							}
 						}
 						
@@ -106,11 +110,11 @@
 							// set start and end animation positions
 							startAnimPos = blocks[i].top + anim.delay;
 							if (anim.baseline === 'bottom') { startAnimPos -= $(window).height(); }
-							endAnimPos = startAnimPos + anim.duration;							
+							endAnimPos = startAnimPos + anim.duration;
 							
 							// if scroll is before start of animation, set to start value
 							if (scrollTop < startAnimPos) {
-							    setProperty(anim.element, anim.property, anim.startVal);
+								setProperty(anim.element, anim.property, anim.startVal);
 							}
 							
 							// if scroll is after end of animation, set to end value
@@ -157,7 +161,7 @@
 		}
 		
 		function setProperty(target, prop, val) {
-		    var scaleCSS, currentPosition;
+			var scaleCSS, currentPosition;
 			if (prop === 'rotate' || prop === 'zoom' || prop === 'scale') {
 				if (prop === 'rotate') {
 					target.css(browserPrefix+'transform', 'rotate('+val+'deg)');
@@ -178,21 +182,27 @@
 				if(prop === 'background-position-y') {
 					target.css('background-position', currentPosition[0]+' '+val+'px');
 				}
-			} 
+			}
 			else if(prop === 'text-shadow' ) {
 				target.css(prop,'0px 0px '+val+'px #ffffff');
 			} else {
 				target.css(prop, val);
-			}	
+			}
 		}
 		
 		
 		// PUBLIC FUNCTIONS
 		scrollorama.animate = function(target) {
-		    var targetIndex, targetBlock, anim, offset, i, j;
+			var targetIndex,
+				targetBlock,
+				anim,
+				offset,
+				i, j;
 			/*
 				target		= animation target
 				arguments	= array of animation parameters
+				anim		= object that contains all animation params (created from arguments)
+				offset		= positioning helper for pinning
 				
 				animation parameters:
 				delay		= amount of scrolling (in pixels) before animation starts
@@ -216,20 +226,20 @@
 				}
 			}
 			
-			// add each animation to the blocks animations array
+			// add each animation to the blocks animations array from function arguments
 			for (i=1; i<arguments.length; i++) {
 				
 				anim = arguments[i];
 				
 				// for top/left/right/bottom, set relative positioning if static
-				if (anim.property === 'top' || anim.property === 'left' || anim.property === 'bottom' || anim.property === 'right' ) {					
+				if (anim.property === 'top' || anim.property === 'left' || anim.property === 'bottom' || anim.property === 'right' ) {
 					if (target.css('position') === 'static') { target.css('position','relative'); }
 					
 					// set anim.start, anim.end defaults
 					if (anim.start === undefined) {
-					    anim.start = 0;
+						anim.start = 0;
 					} else if (anim.end === undefined) {
-					    anim.end = 0;
+						anim.end = 0;
 					}
 				}
 				
@@ -247,9 +257,9 @@
 				
 				if (anim.baseline === undefined) {
 					if (anim.pin || targetBlock.pin || targetIndex === 0) {
-					    anim.baseline = 'top';
+						anim.baseline = 'top';
 					} else {
-					    anim.baseline = 'bottom';
+						anim.baseline = 'bottom';
 					}
 				}
 				
@@ -315,7 +325,7 @@
     };
 
 	//
-	//		Easing functions COPIED DIRECTLY from jQuery UI
+	//		Easing functions from jQuery UI
 	//
 	$.extend($.easing, {
 		def: 'easeOutQuad',
