@@ -234,13 +234,13 @@
 				// for top/left/right/bottom, set relative positioning if static
 				if (anim.property === 'top' || anim.property === 'left' || anim.property === 'bottom' || anim.property === 'right' ) {
 					if (target.css('position') === 'static') { target.css('position','relative'); }
-					
 					// set anim.start, anim.end defaults
-					if (anim.start === undefined) {
-						anim.start = 0;
-					} else if (anim.end === undefined) {
-						anim.end = 0;
-					}
+					cssValue = parseInt(target.css(anim.property),10)
+				  if (anim.start === undefined) {
+					  anim.start = isNaN(cssValue) ? 0 : cssValue;
+				  } else if (anim.end === undefined) {
+					  anim.end = isNaN(cssValue) ? 0 : cssValue;
+				  }
 				}
 				
 				// set anim.start/anim.end defaults for rotate, zoom/scale, letter-spacing
