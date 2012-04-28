@@ -11,6 +11,16 @@
 			blocks = [],
 			browserPrefix = '',
 			onBlockChange = function() {},
+			latestKnownScrollY = 0,
+            ticking = false,
+            requestAnimFrame =	window.requestAnimationFrame ||
+								window.webkitRequestAnimationFrame ||
+								window.mozRequestAnimationFrame    ||
+								window.oRequestAnimationFrame      ||
+								window.msRequestAnimationFrame     ||
+								function( callback ){
+									window.setTimeout(callback, 1000 / 60);
+								},
 			defaults = {offset:0, enablePin: true};
 		
 		scrollorama.settings = $.extend({}, defaults, options);
@@ -51,16 +61,32 @@
 			}
 			
 			$('body').prepend('<div id="scroll-wrap"></div>');
-			$(window).scroll(function() {
-				didScroll = true;
-			});
-			setInterval(function() {
-				if(didScroll) {
-					onScrollorama();
-					didScroll = false;
-				}
-			}, 100);
+			
+			latestKnownScrollY = 0;
+            ticking = false;
+            $(window).scroll( onScroll );
 		}
+
+		function onScroll() {
+            latestKnownScrollY = window.scrollY;
+            requestTick();
+        }
+        
+        function requestTick() {
+            if(!ticking) {
+                requestAnimFrame(function(){
+                    onScrollorama();
+                    update();
+                });
+            }
+            ticking = true;
+        }
+        
+        function update() {
+            // reset the tick so we can
+            // capture the next onScroll
+            ticking = false;
+        }
 		
 		function onScrollorama() {
 			var scrollTop = $(window).scrollTop(),
@@ -235,12 +261,12 @@
 				if (anim.property === 'top' || anim.property === 'left' || anim.property === 'bottom' || anim.property === 'right' ) {
 					if (target.css('position') === 'static') { target.css('position','relative'); }
 					// set anim.start, anim.end defaults
-					cssValue = parseInt(target.css(anim.property),10)
-				  if (anim.start === undefined) {
-					  anim.start = isNaN(cssValue) ? 0 : cssValue;
-				  } else if (anim.end === undefined) {
-					  anim.end = isNaN(cssValue) ? 0 : cssValue;
-				  }
+					cssValue = parseInt(target.css(anim.property),10);
+					if (anim.start === undefined) {
+						anim.start = isNaN(cssValue) ? 0 : cssValue;
+					} else if (anim.end === undefined) {
+						anim.end = isNaN(cssValue) ? 0 : cssValue;
+					}
 				}
 				
 				// set anim.start/anim.end defaults for rotate, zoom/scale, letter-spacing
