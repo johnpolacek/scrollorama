@@ -344,6 +344,30 @@
 			return scrollpoints;
 		};
 		
+		// Remove scrollorama
+		scrollorama.destroy = function () {
+			// Remove animations
+			for (i=0; i<blocks.length; i++) {
+				// Remove CSS rules
+				blocks[i].block.css({
+					top: '',
+					position: ''
+				});
+				
+				// Remove scrolloroma-specific attributes
+				delete blocks[i].animations;
+				delete blocks[i].top;
+				delete blocks[i].pin;
+			}
+
+			// Unbind the window scroll event
+			$(window).off('scroll.scrollorama');
+			$('#scroll-wrap').remove();
+			
+			// Remove the scrolloroma object
+			delete scrollorama;
+		};
+		
 		
 		// INIT
 		init();
