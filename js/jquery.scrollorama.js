@@ -181,8 +181,7 @@
 			var currBlockIndex = 0, i;
 			for (i=0; i<blocks.length; i++) {
 				// check if block is in view
-				var offset = $(blocks[i].block).offset();
-				if (offset.top <= scrollTop - scrollorama.settings.offset) { currBlockIndex = i; }
+				if (blocks[i].top <= scrollTop - scrollorama.settings.offset) { currBlockIndex = i; }
 			}
 			return currBlockIndex;
 		}
