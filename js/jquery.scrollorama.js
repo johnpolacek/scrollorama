@@ -64,7 +64,7 @@
 			
 			latestKnownScrollY = 0;
             ticking = false;
-            $(window).scroll( onScroll );
+            $(window).on( 'scroll.scrollorama', onScroll );
 		}
 
 		function onScroll() {
