@@ -1,8 +1,9 @@
 #Scrollorama
 
-The jQuery plugin for doing cool scrolly stuff
+The jQuery plugin for doing cool scrolly stuff.
 
-Check out the [Project Page](http://johnpolacek.github.com/scrollorama) for more information.
+Want to do super-scrolly stuff? Check out [Scrollorama2: SuperScrollorama](http://johnpolacek.github.com/superscrollorama/)
+
 
 ## License
 
