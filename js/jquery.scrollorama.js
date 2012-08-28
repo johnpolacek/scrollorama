@@ -30,7 +30,7 @@
 		
 		// PRIVATE FUNCTIONS
 		function init() {
-			var i, block, didScroll = false;
+			var i, block, didScroll, marginTop = false;
 			if (typeof scrollorama.settings.blocks === 'string') { scrollorama.settings.blocks = $(scrollorama.settings.blocks); }
 			
 			// set browser prefix
@@ -43,7 +43,7 @@
 			$('body').css('position','relative');
 			for (i=0; i<scrollorama.settings.blocks.length; i++) {
 				block = scrollorama.settings.blocks.eq(i);
-				var marginTop = block.css('margin-top');
+				marginTop = block.css('margin-top');
 				blocks.push({
 					block: block,
 					top: block.offset().top - (!Boolean(marginTop) ? parseInt(marginTop, 10) : 0),
