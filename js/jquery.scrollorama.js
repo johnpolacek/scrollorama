@@ -43,9 +43,10 @@
 			$('body').css('position','relative');
 			for (i=0; i<scrollorama.settings.blocks.length; i++) {
 				block = scrollorama.settings.blocks.eq(i);
+				var marginTop = block.css('margin-top');
 				blocks.push({
 					block: block,
-					top: block.offset().top - parseInt(block.css('margin-top'), 10),
+					top: block.offset().top - (!Boolean(marginTop) ? parseInt(marginTop, 10) : 0),
 					pin: 0,
 					animations:[]
 				});
