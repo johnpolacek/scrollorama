@@ -10,6 +10,7 @@
 		var scrollorama = this,
 			blocks = [],
 			browserPrefix = '',
+			ieVersion = '',
 			onBlockChange = function() {},
 			latestKnownScrollY = 0,
             ticking = false,
@@ -37,7 +38,10 @@
 			if ($.browser.mozilla) { browserPrefix = '-moz-'; }
 			if ($.browser.webkit) { browserPrefix = '-webkit-'; }
 			if ($.browser.opera) { browserPrefix = '-o-'; }
-			if ($.browser.msie) { browserPrefix = '-ms-'; }
+			if ($.browser.msie) { 
+				browserPrefix = '-ms-'; 
+				ieVersion = parseInt($.browser.version, 10);
+			}
 			
 			// create blocks array to contain animation props
 			$('body').css('position','relative');
@@ -280,6 +284,16 @@
 				} else if (anim.property === 'letter-spacing' && target.css(anim.property)) {
 					if (anim.start === undefined) { anim.start = 1; }
 					if (anim.end === undefined) { anim.end = 1; }
+				}
+				
+				// convert background-position property for use on IE8 and lower
+				if (ieVersion && ieVersion < 9 && (anim.property == 'background-position-x' || anim.property == 'background-position-y')) {
+					if (anim.property === 'background-position-x') {
+						anim.property = 'backgroundPositionX';
+					}
+					else {
+						anim.property = 'backgroundPositionY';
+					}
 				}
 				
 				if (anim.baseline === undefined) {
