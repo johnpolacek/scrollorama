@@ -311,8 +311,8 @@
 					delay: anim.delay,
 					duration: anim.duration,
 					property: anim.property,
-					startVal: anim.start !== undefined ? anim.start : parseInt(target.css(anim.property),10),	// if undefined, use current css value
-					endVal: anim.end !== undefined ? anim.end : parseInt(target.css(anim.property),10),			// if undefined, use current css value
+					startVal: anim.start !== undefined ? typeof(anim.start) == 'function' ? anim.start() : anim.start : parseInt(target.css(anim.property),10),	// if undefined, use current css value
+					endVal: anim.end !== undefined ? typeof(anim.end) == 'function' ? anim.end() : anim.end : parseInt(target.css(anim.property),10),			// if undefined, use current css value
 					baseline: anim.baseline !== undefined ? anim.baseline : 'bottom',
 					easing: anim.easing
 				});
