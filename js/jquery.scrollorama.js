@@ -65,7 +65,10 @@
 				}
 			}
 			
-			$('body').prepend('<div id="scroll-wrap"></div>');
+			// create scroll-wrap div only once
+			if ($("#scroll-wrap").length === 0) {
+				$('body').prepend('<div id="scroll-wrap"></div>');
+			}
 			
 			latestKnownScrollY = 0;
             ticking = false;
