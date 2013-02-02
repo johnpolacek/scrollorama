@@ -4,6 +4,8 @@ The jQuery plugin for doing cool scrolly stuff.
 
 Want to do super-scrolly stuff? Check out [Scrollorama2: SuperScrollorama](http://johnpolacek.github.com/superscrollorama/)
 
+[Follow me on Twitter](http://twitter.com/johnpolacek)
+
 
 ## License
 
