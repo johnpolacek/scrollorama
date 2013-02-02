@@ -1,0 +1,26 @@
+{
+    "name": "Scrollorama",
+    "title": "Scrollorama",
+    "description": "The jQuery plugin for cool scroll animation",
+    "keywords": [
+        "scroll",
+        "scrolling",
+        "animation"
+    ],
+    "version": "0.9.0",
+    "author": {
+        "name": "John Polacek",
+        "url": "http://johnpolacek.com"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/johnpolacek/scrollorama/blob/master/README.md"
+        }
+    ],
+    "homepage": "http://johnpolacek.github.com/scrollorama/",
+    "demo": "http://johnpolacek.github.com/scrollorama/",
+    "dependencies": {
+        "jquery": ">=1.5"
+    }
+}
