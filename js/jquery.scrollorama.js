@@ -206,7 +206,8 @@
 					if (browserPrefix !== '-ms-') {
 						target.css(browserPrefix+'transform', scaleCSS);
 					} else {
-						target.css('zoom', scaleCSS);
+						if (jQuery().scale) $(target.selector).scale(val);
+						target.css('zoom', val);
 					}
 				}
 			}
