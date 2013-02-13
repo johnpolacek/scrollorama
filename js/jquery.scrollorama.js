@@ -114,7 +114,7 @@
 						// if above current block, settings should be at start value
 						if (i > currBlockIndex) {
 							if (currBlockIndex !== i-1 && anim.baseline !== 'bottom') {
-								setProperty(anim.element, anim.property, anim.startVal);
+								setProperty(anim, anim.startVal);
 							}
 							if (blocks[i].pin) {
 								blocks[i].block
@@ -126,7 +126,7 @@
 						// if below current block, settings should be at end value
 						// unless on an element that gets animated when it hits the bottom of the viewport
 						else if (i < currBlockIndex) {
-							setProperty(anim.element, anim.property, anim.endVal);
+							setProperty(anim, anim.endVal);
 							if (blocks[i].pin) {
 								blocks[i].block
                                     .css('position', 'absolute')
@@ -150,12 +150,12 @@
 							
 							// if scroll is before start of animation, set to start value
 							if (scrollTop < startAnimPos) {
-								setProperty(anim.element, anim.property, anim.startVal);
+								setProperty(anim, anim.startVal);
 							}
 							
 							// if scroll is after end of animation, set to end value
 							else if (scrollTop > endAnimPos) {
-								setProperty(anim.element, anim.property, anim.endVal);
+								setProperty(anim, anim.endVal);
 								if (blocks[i].pin) {
 									blocks[i].block
                                         .css('position', 'absolute')
@@ -173,7 +173,7 @@
 								}
 								// then multiply the percent by the value range and calculate the new value
 								animVal = anim.startVal + (animPercent * (anim.endVal - anim.startVal));
-								setProperty(anim.element, anim.property, animVal);
+								setProperty(anim, animVal);
 							}
 						}
 					}
@@ -196,7 +196,9 @@
 			return currBlockIndex;
 		}
 		
-		function setProperty(target, prop, val) {
+		function setProperty(anim, val) {
+		  var target = anim.element;
+		  var prop = anim.property;
 			var scaleCSS, currentPosition;
 			if (prop === 'rotate' || prop === 'zoom' || prop === 'scale') {
 				if (prop === 'rotate') {
@@ -223,7 +225,11 @@
 			else if(prop === 'text-shadow' ) {
 				target.css(prop,'0px 0px '+val+'px #ffffff');
 			} else {
-				target.css(prop, val);
+			  if (anim.suffix) {
+			    target.css(prop, val + anim.suffix);
+			  } else {
+				  target.css(prop, val);
+				}
 			}
 		}
 		
@@ -234,6 +240,7 @@
 				targetBlock,
 				anim,
 				offset,
+				suffix,
 				i, j;
 			/*
 				target		= animation target
@@ -312,13 +319,21 @@
 				
 				if (anim.delay === undefined) { anim.delay = 0; }
 				
+				startVal = anim.start !== undefined ? typeof(anim.start) == 'function' ? anim.start() : anim.start : target.css(anim.property);
+				endVal = anim.end !== undefined ? typeof(anim.end) == 'function' ? anim.end() : anim.end : target.css(anim.property);
+				suffix = startVal.toString().match(/\D+$/) || endVal.toString().match(/\D+$/)
+				if (suffix) {
+				  suffix = suffix[0]
+				}
+				
 				targetBlock.animations.push({
 					element: target,
 					delay: anim.delay,
 					duration: anim.duration,
 					property: anim.property,
-					startVal: anim.start !== undefined ? typeof(anim.start) == 'function' ? anim.start() : anim.start : parseInt(target.css(anim.property),10),	// if undefined, use current css value
-					endVal: anim.end !== undefined ? typeof(anim.end) == 'function' ? anim.end() : anim.end : parseInt(target.css(anim.property),10),			// if undefined, use current css value
+					startVal: parseInt(startVal,10), // if undefined, use current css value
+					endVal: parseInt(endVal,10), // if undefined, use current css value
+					suffix: suffix,
 					baseline: anim.baseline !== undefined ? anim.baseline : 'bottom',
 					easing: anim.easing
 				});
