@@ -319,11 +319,13 @@
 				
 				if (anim.delay === undefined) { anim.delay = 0; }
 				
-				startVal = anim.start !== undefined ? typeof(anim.start) == 'function' ? anim.start() : anim.start : target.css(anim.property);
-				endVal = anim.end !== undefined ? typeof(anim.end) == 'function' ? anim.end() : anim.end : target.css(anim.property);
-				suffix = startVal.toString().match(/\D+$/) || endVal.toString().match(/\D+$/)
+				startVal = anim.start !== undefined ? typeof(anim.start) == 'function' ? anim.start() : anim.start : parseInt(target.css(anim.property),10); // if undefined, use current css value
+				endVal = anim.end !== undefined ? typeof(anim.end) == 'function' ? anim.end() : anim.end : parseInt(target.css(anim.property),10); // if undefined, use current css value
+				suffix = startVal.toString().match(/\D+$/) || endVal.toString().match(/\D+$/);
 				if (suffix) {
-				  suffix = suffix[0]
+				  suffix = suffix[0];
+				  startVal = parseInt(startVal,10);  // remove the unit so calculations work correctly
+				  endVal = parseInt(endVal,10);
 				}
 				
 				targetBlock.animations.push({
@@ -331,8 +333,8 @@
 					delay: anim.delay,
 					duration: anim.duration,
 					property: anim.property,
-					startVal: parseInt(startVal,10), // if undefined, use current css value
-					endVal: parseInt(endVal,10), // if undefined, use current css value
+					startVal: startVal, 
+					endVal: endVal, 
 					suffix: suffix,
 					baseline: anim.baseline !== undefined ? anim.baseline : 'bottom',
 					easing: anim.easing
