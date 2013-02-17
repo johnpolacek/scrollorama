@@ -197,8 +197,8 @@
 		}
 		
 		function setProperty(anim, val) {
-		  var target = anim.element;
-		  var prop = anim.property;
+			var target = anim.element;
+			var prop = anim.property;
 			var scaleCSS, currentPosition;
 			if (prop === 'rotate' || prop === 'zoom' || prop === 'scale') {
 				if (prop === 'rotate') {
@@ -225,10 +225,10 @@
 			else if(prop === 'text-shadow' ) {
 				target.css(prop,'0px 0px '+val+'px #ffffff');
 			} else {
-			  if (anim.suffix) {
-			    target.css(prop, val + anim.suffix);
-			  } else {
-				  target.css(prop, val);
+				if (anim.suffix) {
+					target.css(prop, val + anim.suffix);
+				} else {
+					target.css(prop, val);
 				}
 			}
 		}
@@ -323,9 +323,9 @@
 				endVal = anim.end !== undefined ? typeof(anim.end) == 'function' ? anim.end() : anim.end : parseInt(target.css(anim.property),10); // if undefined, use current css value
 				suffix = startVal.toString().match(/\D+$/) || endVal.toString().match(/\D+$/);
 				if (suffix) {
-				  suffix = suffix[0];
-				  startVal = parseInt(startVal,10);  // remove the unit so calculations work correctly
-				  endVal = parseInt(endVal,10);
+					suffix = suffix[0];
+					startVal = parseInt(startVal,10);  // remove the unit so calculations work correctly
+					endVal = parseInt(endVal,10);
 				}
 				
 				targetBlock.animations.push({
@@ -333,8 +333,8 @@
 					delay: anim.delay,
 					duration: anim.duration,
 					property: anim.property,
-					startVal: startVal, 
-					endVal: endVal, 
+					startVal: startVal,
+					endVal: endVal,
 					suffix: suffix,
 					baseline: anim.baseline !== undefined ? anim.baseline : 'bottom',
 					easing: anim.easing
