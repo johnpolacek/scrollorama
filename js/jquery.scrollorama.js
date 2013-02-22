@@ -355,6 +355,8 @@
 			}
 			
 			onScrollorama();
+
+			return scrollorama;
 		};
 		
 		// function for passing blockChange event callback
