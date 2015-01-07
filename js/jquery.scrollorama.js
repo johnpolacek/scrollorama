@@ -8,7 +8,7 @@
 
 (function($) {
     $.scrollorama = function(options) {
-		var scrollorama = this,
+		var scrollorama = {},
 			blocks = [],
 			browserPrefix = '',
 			ieVersion = '',
