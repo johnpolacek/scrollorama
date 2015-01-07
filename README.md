@@ -1,8 +1,8 @@
 #Scrollorama
 
-The jQuery plugin for doing cool scrolly stuff.
+The original jQuery plugin for doing cool scrolly stuff.
 
-Want to do super-scrolly stuff? Check out [Scrollorama2: SuperScrollorama](http://johnpolacek.github.com/superscrollorama/)
+To use the latest, greatest scroll animation library, I recommend checking out Scrollorama successor [ScrollMagic](http://janpaepke.github.io/ScrollMagic/)
 
 [Follow me on Twitter](http://twitter.com/johnpolacek)
 
